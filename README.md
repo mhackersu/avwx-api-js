@@ -1,12 +1,12 @@
 AVWX API Server Function
 =========================================
 
-- This project is a nodejs static web server function for AVWX data.
-- This primary goal of this project is to conveniently parse weather data for open source development and ham radio purposes.
-- Contributions welcome.
+- This project is a nodejs static web server function for AVWX data
+- This primary goal of this project is to conveniently parse weather data for open source development and ham radio purposes
 
 * Thank you to:
-- @blacklyger for making the JS available in his avwx gist
+- @blacklyger for making the original JS function available in his avwx gist
+- Contributions welcome
 
 Getting started
 ---------------
