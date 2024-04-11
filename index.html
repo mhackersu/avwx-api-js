@@ -1,0 +1,75 @@
+<!--JavaScript using wavx API to display airport information-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webpage</title>
+</head>
+<body>
+
+    <input id="field" type="text">
+    <button onclick="func(document.getElementById('field').value)">Weather</button>
+    <script>
+
+        function to_meter(feet){
+            return (feet < 0) ? 0 : Math.round(feet / 3.281);
+        }
+
+        function logger(){
+            if (this.status >= 200 && this.status < 300){
+
+                // Info
+                var obj = JSON.parse(this.responseText);
+                document.getElementById("city").innerHTML = "City: " + obj.info.city;
+                document.getElementById("name").innerHTML = "Name: " + obj.info.name;
+
+                // Runway length
+                var rws_length = "";
+                var runways = obj.info.runways;
+                for (i = 0; i < runways.length; i++){
+                    meter_length = to_meter(runways[i].length_ft);
+                    rws_length += "Runway (length) " + (i + 1) + ": " + runways[i].length_ft + " feet (" + meter_length +"m)<br>";
+                }
+                document.getElementById("rw_length").innerHTML = rws_length;
+                console.log(rws_length);
+
+                // Runway width
+                var rws_width = "";
+                for (j = 0; j < runways.length; j++){
+                    mether_width = to_meter(runways[j].width_ft);
+                    rws_width += "Runway (width) " + (j + 1) + ": " + runways[j].width_ft + " feet (" + mether_width + "m)<br>";
+                }
+                document.getElementById("rw_width").innerHTML = rws_width;
+                console.log(rws_width);
+
+                // Temperature
+                var temperature = obj.temperature.repr;
+                var t_unit = obj.units.temperature;
+                var temp_unit = (t_unit == "C") ? "°C" : "";
+                document.getElementById("temperature").innerHTML = "Temperature: " + temperature +  " (" + temp_unit + ")";
+
+            } else{
+                window.alert("Error!");
+            }
+        }
+
+        function func(url){
+            var request = new XMLHttpRequest();
+            request.addEventListener("load", logger);
+            request.open("GET", "https://avwx.rest/api/metar/" + url + "?format=json&options=info");
+            request.send();
+        }
+    </script>
+
+    <h3 id="city"></h3>
+    <h3 id="name"></h3>
+    <h3 id="rw_length"></h3>
+    <h3 id="rw_width"></h3>
+    <h3 id="temperature"></h3>
+
+</body>
+</html>
+
