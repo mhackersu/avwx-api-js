@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-static-file-server-boilerplate",
-  "version": "0.0.1",
-  "description": "A simple boilerplate to easily get started with a nodejs static file server.",
+  "name": "avwx-api-js-server-function",
+  "version": "0.0.2",
+  "description": "Polls AVWX for METAR, TAR, etc.",
   "private": true,
   "scripts": {
     "start": "node app.js"

@@ -1,7 +1,12 @@
-A simple static nodejs server boilerplate
+AVWX API Server Function
 =========================================
 
-Use this gist to get started with a dead simple, nodejs static web server.
+- This project is a nodejs static web server function for AVWX data.
+- This primary goal of this project is to conveniently parse weather data for open source development and ham radio purposes.
+- Contributions welcome.
+
+* Thank you to:
+- @blacklyger for making the JS available in his avwx gist
 
 Getting started
 ---------------
